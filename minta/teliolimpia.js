@@ -40,7 +40,7 @@ app.get("/helyszin", (req,res) => {
 });
 
 app.get("/erem", (req,res) => {
-    const sql = "SELECT helyezes, orszag FROM rpgyorskorcsolyaeredmenyek";
+    const sql = "SELECT helyezes, arany, ezust, bronz FROM rpgyorskorcsolyaeredmenyek ORDER BY helyezes ASC";
     db.query(sql, (err, result) => {
         if (err) return res.json(err);
         return res.json(result);
@@ -48,7 +48,7 @@ app.get("/erem", (req,res) => {
 });
 
 app.get("/magyar", (req,res) => {
-    const sql = "SELECT sportagak.sportagneve, sportagak.helyszin, magyarermesek.helyezes, rpgytavok.tav FROM magyarermesek INNER JOIN sportagak ON sportagak.sportagID = magyarermesek.sportagID INNER JOIN rpgytavok ON rpgytavok.tavID = magyarermesek.tavID";
+    const sql = "SELECT sportagak.sportagneve, sportagak.helyszin, magyarermesek.helyezes, rpgytavok.tav FROM magyarermesek INNER JOIN sportagak ON sportagak.sportagID = magyarermesek.sportagID INNER JOIN rpgytavok ON rpgytavok.tavID = magyarermesek.tavID ORDER BY magyarermesek.helyezes ASC";
     db.query(sql, (err, result) => {
         if (err) return res.json(err);
         return res.json(result);
